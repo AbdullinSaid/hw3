@@ -61,8 +61,8 @@ find_cos:
 	movsd	QWORD PTR -32[rbp], xmm0
 	movsd	xmm0, QWORD PTR .LC2[rip]
 	movsd	QWORD PTR -16[rbp], xmm0
-	mov	DWORD PTR -20[rbp], 0
-	mov	DWORD PTR -24[rbp], 1
+	mov	DWORD PTR -20[rbp], 0  #step_num
+	mov	DWORD PTR -24[rbp], 1  #flag
 	jmp	.L2
 .L3:
 	pxor	xmm0, xmm0
@@ -71,7 +71,7 @@ find_cos:
 	movsd	xmm1, QWORD PTR -8[rbp]
 	addsd	xmm0, xmm1
 	movsd	QWORD PTR -8[rbp], xmm0
-	movsd	xmm0, QWORD PTR -16[rbp]
+	movsd	xmm0, QWORD PTR -16[rbp]	
 	mulsd	xmm0, QWORD PTR -32[rbp]
 	movsd	QWORD PTR -16[rbp], xmm0
 	mov	eax, DWORD PTR -20[rbp]
@@ -87,7 +87,7 @@ find_cos:
 	add	DWORD PTR -20[rbp], 2
 	neg	DWORD PTR -24[rbp]
 .L2:
-	cmp	DWORD PTR -20[rbp], 99
+	cmp	DWORD PTR -20[rbp], 99   #step_num < 100
 	jle	.L3
 	call	clock@PLT
 	mov	QWORD PTR end[rip], rax
